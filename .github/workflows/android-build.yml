@@ -10,28 +10,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # Tüm adımlar Android dizininde çalışacak
+    defaults:
+      run:
+        working-directory: ./Android
+
     env:
       SDK_APP_ID: ${{ secrets.SDK_APP_ID }}
       SDK_SECRET_KEY: ${{ secrets.SDK_SECRET_KEY }}
 
     steps:
+      # Repo'yu çek
       - name: Checkout source
         uses: actions/checkout@v4
 
+      # JDK kurulumu
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # gradlew dosyasını çalıştırılabilir yap
       - name: Grant execute permission for gradlew
-        run: chmod +x ./Android/gradlew
+        run: chmod +x gradlew
 
+      # APK build
       - name: Build with Gradle
-        run: ./Android/gradlew assembleRelease
+        run: ./gradlew assembleRelease
 
+      # Build edilen APK'yı yükle
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: TUILiveKit-Release
-          path: Android/app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/release/app-release.apk
