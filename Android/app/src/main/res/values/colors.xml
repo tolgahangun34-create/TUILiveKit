@@ -22,6 +22,7 @@
     <color name="app_design_standard_b1">#1C66E5</color>
 
     <!-- Eksik projeye özel renkler (build hatalarını önlemek için eklendi) -->
+    <color name="common_design_standard_b1">#1C66E5</color> <!-- eksik olan -->
     <color name="common_color_dialog_agree">#4CAF50</color> <!-- yeşil -->
     <color name="common_design_standard_g1">#9E9E9E</color> <!-- gri -->
     <color name="common_design_standard_g2">#BDBDBD</color> <!-- açık gri -->
