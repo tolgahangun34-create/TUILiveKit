@@ -1,39 +1,59 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
-    compileSdk rootProject.compileSdkVersion
-    namespace "com.trtc.uikit.livekit.example"
+    namespace "com.tencent.liteav.demo"
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.trtc.uikit.livekit.example"
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
+        applicationId "com.tencent.liteav.demo"
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Tencent AppID & SecretKey (GitHub Actions üzerinden gelecek)
+        buildConfigField "int", "SDKAPPID", System.getenv("SDK_APP_ID") ?: "0"
+        buildConfigField "String", "SECRETKEY", "\"${System.getenv("SDK_SECRET_KEY") ?: ""}\""
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Release build için de ekliyoruz
+            buildConfigField "int", "SDKAPPID", System.getenv("SDK_APP_ID") ?: "0"
+            buildConfigField "String", "SECRETKEY", "\"${System.getenv("SDK_SECRET_KEY") ?: ""}\""
+        }
+        debug {
+            // Debug build için de ekliyoruz
+            buildConfigField "int", "SDKAPPID", System.getenv("SDK_APP_ID") ?: "0"
+            buildConfigField "String", "SECRETKEY", "\"${System.getenv("SDK_SECRET_KEY") ?: ""}\""
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
 dependencies {
-    api project(':debug')
-    api project(':tuilivekit')
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'javax.annotation:javax.annotation-api:1.3.2'
-    implementation "com.google.android.material:material:1.12.0"
+    // Orijinal projede kullanılan ek kitaplıklar
+    implementation 'com.tencent.liteav:LiteAVSDK_TRTC:11.9.0.13143'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.activity:activity-ktx:1.8.0'
+    implementation 'androidx.fragment:fragment-ktx:1.6.1'
 }
