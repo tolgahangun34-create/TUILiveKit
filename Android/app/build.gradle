@@ -1,4 +1,3 @@
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -15,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // Tencent AppID & SecretKey (GitHub Actions üzerinden gelecek)
+        // Tencent AppID & SecretKey (CI/CD ortamında gelecek)
         buildConfigField "int", "SDKAPPID", System.getenv("SDK_APP_ID") ?: "0"
         buildConfigField "String", "SECRETKEY", "\"${System.getenv("SDK_SECRET_KEY") ?: ""}\""
     }
@@ -45,19 +44,31 @@ android {
 
 repositories {
     google()
-    mavenCentral() // <-- tuicallkit için gerekli
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
 }
 
 dependencies {
+    // AndroidX temel kütüphaneler
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    // Tencent tuicallkit Maven Central üzerinden
+    // Tencent Cloud IM SDK
+    implementation 'com.tencent.imsdk:imsdk-plus:7.6.5645'
+
+    // Tencent TUIKit Core
+    implementation 'com.tencent.liteav.tuikit:tuicore:7.6.5645'
+
+    // Tencent TUIKit CallKit
     implementation 'com.tencent.liteav.tuikit:tuicallkit:3.2.0.835'
 
-    // Diğer bağımlılıklar
+    // Tencent LiveKit (Video/Live)
+    implementation 'com.tencent.liteav:livekit:1.2.0.335'
+
+    // Lifecycle & AndroidX ekleri
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.activity:activity-ktx:1.8.0'
