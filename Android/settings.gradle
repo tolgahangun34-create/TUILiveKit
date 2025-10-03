@@ -1,4 +1,24 @@
-include ':app'
-include ':debug'
-include ':tuilivekit'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://mirrors.tencent.com/repository/maven/thirdparty" }
+    }
+}
+
+rootProject.name = "TUILiveKit"
+
+include(":app")
+include(":debug")
+include(":tuilivekit")
 include(":atomic_x")
