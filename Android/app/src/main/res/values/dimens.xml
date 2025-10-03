@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Genel boyutlar -->
+    <dimen name="livekit_top_btn_size">48dp</dimen>
+    <dimen name="livekit_margin_small">8dp</dimen>
+    <dimen name="livekit_margin_medium">16dp</dimen>
+    <dimen name="livekit_margin_large">24dp</dimen>
+
+    <!-- Yazı boyutları -->
+    <dimen name="livekit_text_size_small">12sp</dimen>
+    <dimen name="livekit_text_size_medium">14sp</dimen>
+    <dimen name="livekit_text_size_large">16sp</dimen>
+    <dimen name="livekit_text_size_title">18sp</dimen>
+
+    <!-- Buton ve input alanları -->
+    <dimen name="livekit_button_height">48dp</dimen>
+    <dimen name="livekit_button_radius">8dp</dimen>
+    <dimen name="livekit_input_height">44dp</dimen>
+    <dimen name="livekit_input_padding">12dp</dimen>
+
+    <!-- Liste ve kart elemanları -->
+    <dimen name="livekit_item_height">60dp</dimen>
+    <dimen name="livekit_item_margin">12dp</dimen>
+    <dimen name="livekit_item_radius">8dp</dimen>
+
+    <!-- Boşluklar -->
+    <dimen name="livekit_spacing_small">4dp</dimen>
+    <dimen name="livekit_spacing_medium">8dp</dimen>
+    <dimen name="livekit_spacing_large">16dp</dimen>
+
+    <!-- Canlı yayın ekranı -->
+    <dimen name="livekit_video_padding">2dp</dimen>
+    <dimen name="livekit_video_margin">4dp</dimen>
+</resources>
