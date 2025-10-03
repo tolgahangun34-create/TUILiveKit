@@ -1,14 +1,18 @@
 name: Android Build
 
 on:
-  workflow_dispatch:   # Manuel olarak tetikleme
-  push:                # İstersen push olduğunda da tetikler
+  workflow_dispatch:   # Manuel tetikleme
+  push:                # main branch'e push olduğunda tetikler
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      SDK_APP_ID: ${{ secrets.SDK_APP_ID }}
+      SDK_SECRET_KEY: ${{ secrets.SDK_SECRET_KEY }}
 
     steps:
       - name: Checkout source
@@ -29,5 +33,5 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: TUILiveKit-Release
           path: app/build/outputs/apk/release/app-release.apk
