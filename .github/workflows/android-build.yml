@@ -1,8 +1,8 @@
 name: Android Build
 
 on:
-  workflow_dispatch:   # Manuel tetikleme
-  push:                # main branch'e push olduğunda tetikler
+  workflow_dispatch:
+  push:
     branches:
       - main
 
@@ -28,10 +28,10 @@ jobs:
         run: chmod +x ./Android/gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./Android/gradlew assembleRelease
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: TUILiveKit-Release
-          path: app/build/outputs/apk/release/app-release.apk
+          path: Android/app/build/outputs/apk/release/app-release.apk
